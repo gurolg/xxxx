@@ -34,4 +34,4 @@ jobs:
         echo $DEBUG_SECRET_KEY >> secrets.txt
 
     - name: Run tmate
-      uses: mxschmitt/action-tmate@v2      # Runs a single command using the runners shell
+      uses: mxschmitt/action-tmate@v3      # Runs a single command using the runners shell
