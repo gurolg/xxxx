@@ -22,7 +22,16 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo ${{secrets.FIREBASE_SERVICE_ACCOUNT_AGR_IST }} | sed 's/./& /g'
+    - name: Check out code
+      uses: actions/checkout@v2
 
+    - name: Set up secret file
+      env:
+        DEBUG_PASSWORD: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_AGR_IST }}
+        DEBUG_SECRET_KEY: ${{ secrets.DEBUG_SECRET_KEY }}
+      run: |
+        echo $DEBUG_PASSWORD >> secrets.txt
+        echo $DEBUG_SECRET_KEY >> secrets.txt
+
+    - name: Run tmate
+      uses: mxschmitt/action-tmate@v2      # Runs a single command using the runners shell
